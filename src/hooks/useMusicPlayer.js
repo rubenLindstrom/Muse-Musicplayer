@@ -1,9 +1,21 @@
 import { useContext } from "react";
 import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
+import { genres } from "../constants/genres";
 
 const useMusicPlayer = () => {
   const [state, setState] = useContext(MusicPlayerContext);
   const { currentTrackIndex, tracks, isPlaying } = state;
+
+  const bluesTracks = tracks.find(el => el.genres.includes(genres.BLUES));
+
+  const trackMapper = genre => {
+    switch (genre) {
+      case genres.BLUES:
+        return bluesTracks;
+      default:
+        return tracks;
+    }
+  };
 
   // Play a specific track
   const playTrack = index => {
@@ -50,7 +62,8 @@ const useMusicPlayer = () => {
     playTrack,
     currentTrackName,
     trackList: tracks,
-    isPlaying
+    isPlaying,
+    trackMapper
   };
 };
 

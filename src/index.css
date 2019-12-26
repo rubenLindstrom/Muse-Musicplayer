@@ -3,6 +3,7 @@ body {
   font-family: Roboto, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(209, 209, 209);
 }
 
 h1,
@@ -16,4 +17,5 @@ h6 {
 
 #container {
   padding: 2rem;
+  padding-bottom: 4.5em;
 }

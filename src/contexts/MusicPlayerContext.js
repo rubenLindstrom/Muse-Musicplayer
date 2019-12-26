@@ -1,27 +1,12 @@
 import React, { useState } from "react";
 
-import littleidea from "../assets/audio/littleidea.mp3";
-import memories from "../assets/audio/memories.mp3";
-import ukulele from "../assets/audio/ukulele.mp3";
+import tracks from "../models/tracks";
 
 const MusicPlayerContext = React.createContext([{}, () => {}]);
 
 const initialState = {
   audioPlayer: new Audio(),
-  tracks: [
-    {
-      name: "Benjamin Tissot - Little Idea",
-      file: littleidea
-    },
-    {
-      name: "Benjamin Tissot - Memories",
-      file: memories
-    },
-    {
-      name: "Benjamin Tissot - Ukulele",
-      file: ukulele
-    }
-  ],
+  tracks,
   currentTrackIndex: null,
   isPlaying: false
 };
