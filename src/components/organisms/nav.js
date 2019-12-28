@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faCompactDisc } from "@fortawesome/free-solid-svg-icons";
 
-import { NavLink } from "react-router-dom";
+import routes from "../../constants/routes";
 
 const Wrapper = styled.div`
   height: 2.5em;
@@ -19,17 +20,17 @@ const StyledLink = styled(NavLink)`
   color: #fff;
   cursor: pointer;
   &.active {
-    color: #ffb921;
+    color: var(--main);
   }
 `;
 
 const nav = () => {
   return (
     <Wrapper>
-      <StyledLink exact to="/">
+      <StyledLink exact to={routes.home}>
         <FontAwesomeIcon icon={faHome} />
       </StyledLink>
-      <StyledLink to="/categories">
+      <StyledLink to={routes.genres}>
         <FontAwesomeIcon icon={faCompactDisc} />
       </StyledLink>
     </Wrapper>

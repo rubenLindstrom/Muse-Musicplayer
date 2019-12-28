@@ -10,56 +10,56 @@ import reggae from "../assets/images/categories/reggae.jpg";
 import rock from "../assets/images/categories/rock.jpg";
 
 export const genres = {
-  BLUES: "BLUES",
-  COUNTRY: "COUNTRY",
-  EDM: "EDM",
-  JAZZ: "JAZZ",
-  POP: "POP",
-  REGGAE: "REGGAE",
-  PUNK: "PUNK",
-  ROCK: "ROCK",
-  CHRISTMAS: "CHRISTMAS",
-  CLASSIC: "CLASSIC"
+  BLUES: "blues",
+  COUNTRY: "country",
+  EDM: "edm",
+  JAZZ: "jazz",
+  POP: "pop",
+  REGGAE: "reggae",
+  PUNK: "punk",
+  ROCK: "rock",
+  CHRISTMAS: "christmas",
+  CLASSIC: "classic"
 };
 
 export default {
-  BLUES: {
+  [genres.BLUES]: {
     image: blues,
     title: "blues"
   },
-  COUNTRY: {
+  [genres.COUNTRY]: {
     image: country,
     title: "country"
   },
-  EDM: {
+  [genres.EDM]: {
     image: edm,
     title: "edm"
   },
-  JAZZ: {
+  [genres.JAZZ]: {
     image: jazz,
     title: "jazz"
   },
-  POP: {
+  [genres.POP]: {
     image: pop,
     title: "pop"
   },
-  REGGAE: {
+  [genres.REGGAE]: {
     image: reggae,
     title: "reggae"
   },
-  PUNK: {
+  [genres.PUNK]: {
     image: punk,
     title: "punk"
   },
-  ROCK: {
+  [genres.ROCK]: {
     image: rock,
     title: "rock"
   },
-  CHRISTMAS: {
+  [genres.CHRISTMAS]: {
     image: christmas,
     title: "christmas"
   },
-  CLASSIC: {
+  [genres.CLASSIC]: {
     image: classic,
     title: "classic"
   }

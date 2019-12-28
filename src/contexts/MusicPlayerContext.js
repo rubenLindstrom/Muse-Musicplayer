@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import genreData, { genres } from "../models/genres";
 import tracks from "../models/tracks";
 
 const MusicPlayerContext = React.createContext([{}, () => {}]);
@@ -7,8 +8,12 @@ const MusicPlayerContext = React.createContext([{}, () => {}]);
 const initialState = {
   audioPlayer: new Audio(),
   tracks,
-  currentTrackIndex: null,
-  isPlaying: false
+  currentTrack: null,
+  isPlaying: false,
+  genreData,
+  genres,
+  queue: [],
+  currentTrackIndex: null
 };
 
 const MusicPlayerProvider = props => {

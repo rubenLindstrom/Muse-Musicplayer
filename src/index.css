@@ -1,3 +1,7 @@
+:root {
+  --main: #ffb921;
+}
+
 body {
   margin: 0;
   font-family: Roboto, serif;

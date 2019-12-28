@@ -1,4 +1,5 @@
 export default {
   home: "/",
-  genre: "/:genre"
+  genres: "/genres",
+  genre: "/genres/:genre"
 };

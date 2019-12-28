@@ -1,49 +1,79 @@
 import { useContext } from "react";
 import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
-import { genres } from "../constants/genres";
 
 const useMusicPlayer = () => {
   const [state, setState] = useContext(MusicPlayerContext);
-  const { currentTrackIndex, tracks, isPlaying } = state;
+  const {
+    currentTrack,
+    tracks,
+    isPlaying,
+    genreData,
+    genres,
+    queue,
+    currentTrackIndex
+  } = state;
 
-  const bluesTracks = tracks.find(el => el.genres.includes(genres.BLUES));
+  const tracksByGenre = {};
+  Object.keys(genres).forEach(key => {
+    tracksByGenre[genres[key]] = {};
+  });
 
-  const trackMapper = genre => {
-    switch (genre) {
-      case genres.BLUES:
-        return bluesTracks;
-      default:
-        return tracks;
-    }
-  };
+  // Linear complexity, caching
+  Object.keys(tracks).forEach(key => {
+    tracks[key].genres.forEach(genre => {
+      tracksByGenre[genre][key] = tracks[key];
+    });
+  });
+
+  const genreMapper = genre => genreData[genre];
+  const trackMapper = genre => tracksByGenre[genre];
 
   // Play a specific track
-  const playTrack = index => {
-    if (index === currentTrackIndex) togglePlay();
+  const playTrack = (id, index) => {
+    if (id === currentTrack) togglePlay();
     else {
       state.audioPlayer.pause();
-      state.audioPlayer = new Audio(tracks[index].file);
+      state.audioPlayer = new Audio(tracks[id].track);
       state.audioPlayer.play();
       setState(state => ({
         ...state,
-        currentTrackIndex: index,
-        isPlaying: true
+        currentTrack: id,
+        isPlaying: true,
+        currentTrackIndex: index
       }));
     }
   };
 
+  const setQueue = (index, genre) => {
+    setState(state => ({
+      ...state,
+      queue: Object.keys(trackMapper(genre)),
+      currentTrackIndex: index
+    }));
+  };
+
   // Play the previous track
   const playPreviousTrack = () => {
-    // TODO: easier way to do this?
     const newIndex =
-      (((currentTrackIndex - 1) % tracks.length) + tracks.length) %
-      tracks.length;
-    playTrack(newIndex);
+      (((currentTrackIndex - 1) % queue.length) + queue.length) % queue.length;
+    console.log(newIndex);
+    console.log(queue);
+
+    playTrack(queue[newIndex], newIndex);
   };
 
   const playNextTrack = () => {
-    const newIndex = (currentTrackIndex + 1) % tracks.length;
-    playTrack(newIndex);
+    const newIndex = (currentTrackIndex + 1) % queue.length;
+    playTrack(queue[newIndex], newIndex);
+  };
+
+  const queueSong = id => {
+    const newQueue = [...queue];
+    newQueue.splice(currentTrackIndex + 1, 0, id);
+    setState(state => ({
+      ...state,
+      queue: newQueue
+    }));
   };
 
   const togglePlay = () => {
@@ -53,17 +83,22 @@ const useMusicPlayer = () => {
     setState(state => ({ ...state, isPlaying: !isPlaying }));
   };
   const currentTrackName =
-    currentTrackIndex !== null && tracks[currentTrackIndex].name;
+    currentTrackIndex !== null && tracks[currentTrack].title;
 
   return {
     togglePlay,
     playPreviousTrack,
     playNextTrack,
     playTrack,
+    currentTrack,
     currentTrackName,
     trackList: tracks,
     isPlaying,
-    trackMapper
+    genreMapper,
+    trackMapper,
+    genres,
+    genreData,
+    setQueue
   };
 };
 

@@ -1,10 +1,9 @@
 import React from "react";
+import useMusicPlayer from "../hooks/useMusicPlayer";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { PageTitle } from "../components/atoms";
-
-import genres from "../constants/genres";
 
 const Grid = styled.div`
   display: grid;
@@ -48,21 +47,32 @@ const GridItem = styled.div`
   }
 `;
 
+const Genres = () => {
+  const { genres, genreData } = useMusicPlayer();
+  console.log(genres, genreData);
+
+  return (
+    <>
+      {Object.keys(genres).map(key => {
+        const { title, image } = genreData[genres[key]];
+        return (
+          <Link to={`/genres/${title}`} key={title}>
+            <GridItem bg={image}>
+              <h2>{title}</h2>
+            </GridItem>
+          </Link>
+        );
+      })}
+    </>
+  );
+};
+
 const home = () => {
   return (
     <>
       <PageTitle>home</PageTitle>
       <Grid>
-        {Object.keys(genres).map(key => {
-          const { title, image } = genres[key];
-          return (
-            <Link to={`/${title}`} key={title}>
-              <GridItem bg={image}>
-                <h2>{title}</h2>
-              </GridItem>
-            </Link>
-          );
-        })}
+        <Genres />
       </Grid>
     </>
   );
