@@ -25,42 +25,42 @@ export const genres = {
 export default {
   [genres.BLUES]: {
     image: blues,
-    title: "blues"
+    title: "Blues"
   },
   [genres.COUNTRY]: {
     image: country,
-    title: "country"
+    title: "Country"
   },
   [genres.EDM]: {
     image: edm,
-    title: "edm"
+    title: "EDM"
   },
   [genres.JAZZ]: {
     image: jazz,
-    title: "jazz"
+    title: "Jazz"
   },
   [genres.POP]: {
     image: pop,
-    title: "pop"
+    title: "Pop"
   },
   [genres.REGGAE]: {
     image: reggae,
-    title: "reggae"
+    title: "Reggae"
   },
   [genres.PUNK]: {
     image: punk,
-    title: "punk"
+    title: "Punk"
   },
   [genres.ROCK]: {
     image: rock,
-    title: "rock"
+    title: "Rock"
   },
   [genres.CHRISTMAS]: {
     image: christmas,
-    title: "christmas"
+    title: "Christmas"
   },
   [genres.CLASSIC]: {
     image: classic,
-    title: "classic"
+    title: "Classic"
   }
 };

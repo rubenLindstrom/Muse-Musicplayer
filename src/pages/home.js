@@ -8,7 +8,6 @@ import { PageTitle } from "../components/atoms";
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 0 -2rem;
   grid-gap: 1px;
 `;
 
@@ -30,7 +29,7 @@ const GridItem = styled.div`
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--shaded);
   }
 
   h2 {
@@ -49,14 +48,12 @@ const GridItem = styled.div`
 
 const Genres = () => {
   const { genres, genreData } = useMusicPlayer();
-  console.log(genres, genreData);
-
   return (
     <>
       {Object.keys(genres).map(key => {
         const { title, image } = genreData[genres[key]];
         return (
-          <Link to={`/genres/${title}`} key={title}>
+          <Link to={`/genres/${title.toLowerCase()}`} key={title}>
             <GridItem bg={image}>
               <h2>{title}</h2>
             </GridItem>
@@ -70,8 +67,8 @@ const Genres = () => {
 const home = () => {
   return (
     <>
-      <PageTitle>home</PageTitle>
-      <Grid>
+      <PageTitle>Home</PageTitle>
+      <Grid className="fullwidth">
         <Genres />
       </Grid>
     </>

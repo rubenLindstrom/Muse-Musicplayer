@@ -34,7 +34,7 @@ const Controls = () => {
       <div>
         <marquee>{currentTrackName}</marquee>
       </div>
-      <div>
+      <span>
         <Button onClick={playPreviousTrack} disabled={!currentTrackName}>
           <FontAwesomeIcon icon={faStepBackward} />
         </Button>
@@ -44,7 +44,7 @@ const Controls = () => {
         <Button onClick={playNextTrack} disabled={!currentTrackName}>
           <FontAwesomeIcon icon={faStepForward} />
         </Button>
-      </div>
+      </span>
     </Wrapper>
   );
 };

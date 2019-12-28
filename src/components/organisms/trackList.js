@@ -68,9 +68,6 @@ const Track = props => {
   const { title, artist } = track;
   const isOn = currentTrack === id;
 
-  console.log(currentTrack);
-  console.log(id);
-
   return (
     <StyledTrack className={isOn ? "isOn" : ""}>
       <span>

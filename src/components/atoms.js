@@ -6,5 +6,6 @@ export const PageTitle = styled.h2`
   margin-top: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-transform: capitalize;
+  position: relative;
+  z-index: 2;
 `;
